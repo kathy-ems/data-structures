@@ -12,8 +12,9 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
-    stacksize--;
-    return someInstance[stacksize];    
+    stacksize--; 
+    return someInstance[stacksize];  
+     
   };
 
   someInstance.size = function() {
