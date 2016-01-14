@@ -4,12 +4,11 @@ var Stack = function() {
 
   //decalre a new object someinstance 
  // declare an object someinstance
-  var someInstance = {
- //create storage obj as a property of someinstance
-    storage: {},
- //create stacksise of 0 as a property of someinstance
-    stacksize: 0
-  };
+  var someInstance = {};
+  //create storage obj as a property of someinstance
+  someInstance.storage = {};
+ // //create stacksise of 0 as a property of someinstance
+  someInstance.stacksize = 0;
 
  //use extend function with someinstance obj as first argument and stackmethas the 2ns argument
  // for size the first arg will be the someInstance, the second arg will be stackMethod
@@ -23,7 +22,7 @@ Stack.stackMethods = {
     return this.stacksize;
   },
 
-  push: function(value) {
+  push: function(value) {  
     this.storage[this.stacksize] = value;
     this.stacksize++;
   },
