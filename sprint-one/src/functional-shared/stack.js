@@ -12,22 +12,27 @@ var Stack = function() {
 
  //use extend function with someinstance obj as first argument and stackmethas the 2ns argument
  // for size the first arg will be the someInstance, the second arg will be stackMethod
- _.extend(someInstance, Stack.stackMethods);
+ // _.extend(someInstance,stackMethods);
+
+ someInstance.size = stackMethods.size;
+ someInstance.push = stackMethods.push;
+ someInstance.pop = stackMethods.pop;
 
  return someInstance;
 };
 
-Stack.stackMethods = {
-  size: function() {
-    return this.stacksize;
-  },
+var stackMethods = {};
 
-  push: function(value) {  
+  stackMethods.size =function() {
+    return this.stacksize;
+  };
+
+  stackMethods.push =function(value) {  
     this.storage[this.stacksize] = value;
     this.stacksize++;
-  },
+  };
 
-  pop: function() {
+  stackMethods.pop =function() {
     if(this.stacksize < 0 ) {
       return 0;
     }
@@ -36,10 +41,9 @@ Stack.stackMethods = {
       this.stacksize--;
     }
     return this.storage[this.stacksize];
-  }
+  }; 
 
 
-};
 
 //AssertionError: expected 1 to be at most 0
 
