@@ -3,26 +3,40 @@
 // ------------------------
 // Instantiate a new graph
 var Graph = function() {
+  // graph tracks who is connected to who
+  this.nodes = {};
+
+  /* nodes = {
+    1: [2,3],
+    2: [1,3],
+    3: [2,1,4],
+    4: [3]
+  }
+  */
 };
 
 // ------------------------
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
+  this.nodes[node] = [];
 };
 
 // ------------------------
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
+  return this.nodes[node] ? true : false;
 };
 
 // ------------------------
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+  delete this.nodes[node];
 };
 
 // ------------------------
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
+
 };
 
 // ------------------------
