@@ -18,32 +18,21 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  // check if current node.value = target. 
-  // if(this.value === target) {
-  //   return true;
-  // }
-
+  var result = false;
   var checkcontains = function(element) {
-    // base case: if el.length equals 0 return false
-    if(element.length === 0) {
-      return false;
-    }
-    if(element[0].value === target) {
-      return true;
+    if(element.value === target) {
+      result = true;
+      return result;
     } else {
-      // to find nested children
-      if(element.children !== undefined) {
-        var temp = element.children;
-        for(var i = 0;i<temp.length;i++) {
-         return checkcontains(temp[i]);
+      if(element.children) {
+        for(var i=0;i<element.children.length;i++) {
+            checkcontains(element.children[i]);   
         }
       }
-      // returnn checkcontains with everything else in element besides first (use slice)
-      return checkcontains(element.slice(1));
     }
+    return result;
   };
-  // call checkcotnains on this.children
-  return checkcontains(this.children);
+  return checkcontains(this);
 };
 
 
