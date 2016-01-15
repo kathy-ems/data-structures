@@ -8,30 +8,48 @@ var LinkedList = function() {
   list.prevNode = null;
 
   list.addToTail = function(value) {
-
+    var currNode = Node(value);
     if(list.tail === null ){
-      list.tail = Node(value);
+      list.tail = currNode;
     } else {
-      list.tail.next = value;
-      list.tail = Node(value);
+      list.tail.next = currNode;
+      list.tail = currNode;
     }
 
     // if this is the first item (list.head = null)
     if (list.head === null) {
       // add the current value to list.head for quick lookups
-      list.head = value;
+      list.head = currNode;
     } 
   };
 
   list.removeHead = function() {
-    // 
-    return list.head;
+    var formerHead = list.head.value;
+    // copy list.head.next
+    // and put list.head.next into new head node.next
+    list.head = list.head.next;
+
+    return formerHead;
   };
 
   list.contains = function(target) {
-  };
 
-  return list;
+    var checkContains = function (node) {
+      if(node.next === null && node.value !== target){
+        return false;
+      }
+      
+      if(node.value === target) {
+        return true;
+      } else {
+        return checkContains(node.next);
+      }
+    };
+
+  return checkContains(list.head);
+  };
+  
+return list;
 };
 
 var Node = function(value) {
