@@ -22,7 +22,7 @@ treeMethods.contains = function(target) {
   var checkcontains = function(node) {
     if(node.value === target) {
       result = true;
-      return result;
+      //return result;
     } else {
       if(node.children) {
         for(var i=0;i<node.children.length;i++) {
