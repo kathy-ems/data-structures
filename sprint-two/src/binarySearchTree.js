@@ -18,26 +18,47 @@ treeNodeMethods.insert = function(value) {
 
   if(value < oldValue) {
     if(this.left === null) {
-      this.left = treeNode(value);
+      this.left = BinarySearchTree(value);
     } else {
-      insert(this.left);
+      this.left.insert(value);
     }
   }
   if(value > oldValue) {
     if(this.right === null) {
-      this.right = treeNode(value);
+      this.right = BinarySearchTree(value);
     } else {
-      insert(this.right);
+      this.right.insert(value);
     } 
   }
 };
 
-treeNodeMethods.contains = function() {
-
+treeNodeMethods.contains = function(value) {
+  var oldValue = this.value;
+  if(oldValue === value) {
+    return true;
+  } else {
+    if(value < oldValue && this.left!== null) {
+      return this.left.contains(value);
+    } else if(value > oldValue && this.right !== null) {
+      return this.right.contains(value);
+    } else {
+      return false;      
+    }
+  }
 };
 
-treeNodeMethods.depthFirstLog = function() {
-
+treeNodeMethods.depthFirstLog = function(cb) {
+  var inner = function(node) {
+     cb(node.value);
+    if(node.left !== null){
+      inner(node.left);
+    }
+    if(node.right !== null) {
+      inner(node.right);
+    } 
+  };
+ return inner(this);
+ 
 };
 
 /*
